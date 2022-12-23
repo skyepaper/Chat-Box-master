@@ -1,0 +1,22 @@
+<div class="mat-dialog-container">
+  <button id="closeBtn" mat-dialog-close>X</button>
+<form [formGroup]="registerForm">
+<!--(ngSubmit)="onSubmit()">-->
+    <fieldset>
+    <legend>Register Form</legend>
+    
+    <div id="error" *ngIf="errorMessage!==''">{{errorMessage}}</div>
+
+    <label for="username">username</label>
+    <input type="text" id="username" formControlName="username">
+    
+    <label for="password">password</label>
+    <input type="text" id="password" formControlName="password">
+   
+    <label for="confirmPassword">confirm password</label>
+    <input type="text" id="confirmPassword" formControlName="confirmPassword">
+    <button id="submitBtn" type="submit">submit</button>
+        <u id="link" (click)="openLogin()" mat-dialog-close>already registered?</u>
+   </fieldset>
+  </form>
+</div>

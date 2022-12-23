@@ -1,0 +1,55 @@
+
+fieldset{
+    max-width: 300px;
+    margin:2rem auto;
+    border:2px solid;
+    padding: 2rem;
+    color:white;
+}
+label{
+    display: block;
+    font-family: "Gill Sans", sans-serif;
+    padding: .5rem 0;
+}
+input{
+    display: block;
+    width:100%;
+    opacity: 1;
+    background-color:rgb(56, 55, 63);
+}
+#submitBtn{
+    display: block;
+    width:100%;
+    border:0;
+    background: rgb(15, 15, 80);
+    padding: .5rem;
+    color:white;
+    margin: 1rem 0;
+    text-transform: uppercase;
+    opacity: 1;
+}
+#submitBtn:hover{
+    background: rgb(105, 161, 180);
+}
+#error{
+    display: block;
+    font-family: 'Courier New', Courier, monospace;
+    padding: .5rem 0;
+    color: brown;
+}
+#closeBtn{
+    width:25px;
+    margin-left: 570px;
+    background: rgba(114, 6, 11, 0.815);
+    color:white;
+}
+#closeBtn:hover{
+    background: rgba(128, 36, 36, 0.829);
+}
+#link{
+    float:right;
+    color:rgb(33, 93, 184);
+    cursor:pointer;
+}
+
+ 

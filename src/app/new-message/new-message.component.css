@@ -1,0 +1,36 @@
+#container{
+    margin-left:500px;
+}
+#banner{
+    height:70px;
+    width: 429px;
+    text-align: center;
+    background-color: #a12828cb;
+    transform-origin: 0 0;
+    transform:rotate(90deg);
+    margin-left: 70px;
+}
+#text{
+    font-size: 36px;
+    transform:rotate(180deg);
+    letter-spacing: 10px;
+    text-align: center;
+    margin-right: 15px;
+    color: white;
+}
+#messageList{
+    display: flexbox;
+    background-color: rgba(14, 10, 39, 0.301);
+    height:430px;
+    width:780px;
+    margin-left: 70px;
+    margin-top: -70px;
+}
+.message{
+    background-color: rgb(184, 164, 56);
+    text-align: center;
+    padding:10px;
+    height:100px;
+    width:350px;
+    -webkit-border-radius: 1em;
+}
