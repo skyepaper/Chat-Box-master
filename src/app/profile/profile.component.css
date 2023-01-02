@@ -13,22 +13,137 @@
     transform:rotate(180deg);
     letter-spacing: 20px;
     text-align: center;
-    margin-right: 30px;
+    margin-right: 50px;
     color: white;
 }
-#messageList{
-    display: flexbox;
+#messageContainer{
+    display: flex;
+    flex-flow: wrap;
     background-color: rgba(14, 10, 39, 0.301);
-    height:430px;
-    width:780px;
+    height:420px;
+    width:770px;
+    padding: 5px;
     margin-left: 70px;
     margin-top: -70px;
 }
+#messageList{
+    overflow-x: hidden;
+    overflow-y: auto;
+    height:320px;
+    width:620px;
+}
 .message{
     background-color: rgb(184, 164, 56);
+    color:black;
     text-align: center;
     padding:10px;
-    height:100px;
-    width:350px;
+    margin: 10px;
+    margin-bottom: 20px;
+    height:60px;
+    width:260px;
     -webkit-border-radius: 1em;
+    word-wrap: break-word;
+    font-size:15px;
+    position: relative;
+}
+.row{
+    display:flex;
+  flex-direction:row;
+  }
+#secondRow{
+    margin-top:20px;
+}
+#infoUser{
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    font-size: small;
+}
+#infoTime{
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+    font-size: 10px;
+}
+.sendNewMessage{
+    background-color: rgb(85, 74, 14);
+    color:black;
+    text-align: center;
+    padding:10px;
+    margin: 10px;
+    margin-top: -10px;
+    height:60px;
+    width:460px;
+    -webkit-border-radius: 1em;
+    word-wrap: break-word;
+    font-size:25px;
+    position: relative;
+    resize:none;
+}
+.sendBtn{
+    background-color: #a70f0fbe;
+    color:black;
+    text-align: center;
+    padding:10px;
+    margin: 10px;
+    margin-top: -10px;
+    margin-left: -50px;
+    height:60px;
+    width:140px;
+    -webkit-border-radius: 1em;
+    word-wrap: break-word;
+    font-size:25px;
+    position:static;
+    resize:none;
+}
+.showMoreBtn{
+    background-color: #a70f0f;
+    color:white;
+    text-align: center;
+    padding:10px;
+    margin-top: -20px;
+    margin-left: 30px;
+    height:20px;
+    width:150px;
+    -webkit-border-radius: 1em;
+    word-wrap: break-word;
+    font-size:15px;
+    position: relative;
+}
+img{
+    height: 125px;
+    max-width: 125px;
+    margin: 10px;
+    border-radius: 100%;
+  }
+#editBtn{
+    width:140px;
+    font-size: 10px;
+    padding:1px;
+}
+.user{
+    background-color: rgb(184, 164, 56);
+    font-size: 15px;
+    color:white;
+    padding:1px;
+    padding-left: 10px;
+    margin-top: 5px;
+    height:20px;
+    width:120px;
+    -webkit-border-radius: 1em;
+}
+#userContainer{
+    height:245px;
+    width:150px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+#removeUser{
+    float:right;
+    border-style: solid;
+    background-color: #a70f0f;
+    font-size: 10px;
+    padding:2px;
+    border-radius: 100%;
+    cursor: pointer;
 }

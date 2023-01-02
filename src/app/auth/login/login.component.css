@@ -16,6 +16,7 @@ input{
     width:100%;
     opacity: 1;
     background-color:rgb(56, 55, 63);
+    content-visibility:unset;
 }
 #submitBtn{
     display: block;
@@ -51,3 +52,18 @@ input{
     color:rgb(33, 93, 184);
     cursor:pointer;
 }
+#tickbox{
+    margin-top: 10px;
+    margin-left: -5px;
+    width:30px;
+}
+#tickboxLabel{
+    margin-top: 10px;
+   font-size: 15px;
+   font-family: 'Courier New', Courier, monospace;
+}
+
+.row{
+    display:flex;
+  flex-direction:row;
+  }

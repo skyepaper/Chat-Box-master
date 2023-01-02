@@ -19,16 +19,70 @@
 #messageList{
     display: flexbox;
     background-color: rgba(14, 10, 39, 0.301);
-    height:430px;
-    width:780px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height:400px;
+    width:750px;
+    padding: 5px;
     margin-left: 70px;
     margin-top: -70px;
 }
 .message{
     background-color: rgb(184, 164, 56);
-    text-align: center;
+    font-size: 20px;
+    color:white;
     padding:10px;
-    height:100px;
-    width:350px;
+    margin-top: 5px;
+    height:20px;
+    width:710px;
     -webkit-border-radius: 1em;
 }
+#loader{
+    height: 150px;
+    width: 150px;
+    margin-left: 300px;
+    margin-top: 150px;
+}
+.button{
+    border-block-style: solid;
+    border-color: white;
+    text-align: center;
+    font-size: 15px;
+    padding:10px;
+    height:14px;
+    width:200px;
+    float:right;
+    margin-top: -9px;
+    margin-right: -6px;
+    -webkit-border-radius: 1em;
+}
+.detail{
+    border-block-style: solid;
+    border-color: white;
+    text-align: center;
+    font-size: 15px;
+    padding:10px;
+    height:12px;
+    width:70px;
+    float:right;
+    margin-top: -10px;
+    margin-right: 0px;
+    -webkit-border-radius: 1em;
+}
+.friend{
+    background-color: rgb(49, 50, 141);
+}
+.sendMessageBtn{
+    background-color: rgb(25, 127, 131);
+}
+.sendMessageBtn:hover {
+    background-color: #11dbdbc5;
+  }
+  .friendRequestBtn{
+    background-color: rgb(194, 81, 29);
+}
+.friendRequestBtn:hover {
+    background-color: rgb(236, 153, 115);
+  }
+
+

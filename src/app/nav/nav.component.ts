@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
+import { Router } from '@angular/router';
 import { LoginComponent } from '../auth/login/login.component';
 import { RegisterComponent } from '../auth/register/register.component';
+import { IUser } from '../interface/user';
 
 @Component({
   selector: 'app-nav',
@@ -10,8 +12,20 @@ import { RegisterComponent } from '../auth/register/register.component';
 })
 export class NavComponent {
 
-constructor(private dialog: MatDialog) {}
+public user:IUser|null=null;
 
+constructor(private dialog: MatDialog,private router:Router) {}
+
+getUsername(){
+  if(localStorage.getItem('user')){
+    this.user=JSON.parse(localStorage.getItem('user')!);
+    this.user=JSON.parse(localStorage.getItem('user')!);
+
+    return this.user?.username;
+  }
+  return "anon";
+ }
+ 
 openLogin() {
 
     const dialogConfig = new MatDialogConfig();
@@ -33,5 +47,10 @@ openRegister() {
   dialogConfig.closeOnNavigation=false;
 
   this.dialog.open(RegisterComponent,dialogConfig);
+}
+logout(){
+  localStorage.clear();
+  this.user=null;
+  this.router.navigate(['/wall']);
 }
 }

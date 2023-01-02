@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-
+  loadFlag:number=0;
   constructor() { }
 
   ngOnInit(): void {
+    setTimeout(()=>{this.loadFlag=1;},10000);
   }
 
 }

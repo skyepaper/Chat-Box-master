@@ -32,3 +32,9 @@
     width:350px;
     -webkit-border-radius: 1em;
 }
+#loader{
+    height: 150px;
+    width: 150px;
+    margin-left: 300px;
+    margin-top: 150px;
+}

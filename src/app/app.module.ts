@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import {ReactiveFormsModule } from '@angular/forms';
+import {FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations"
 
@@ -33,6 +34,7 @@ import { ProfileComponent } from './profile/profile.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     MatDialogModule,
     BrowserAnimationsModule
   ],

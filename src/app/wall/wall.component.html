@@ -2,10 +2,16 @@
    <div id="banner">
        <div id="text">WALL</div>
    </div>
-   <div id="messageList">
+   <div id="messageContainer">
+      <div id="messageList">
          <div class="row">
          <div>
 
+            <div class="message">
+               The word-wrap property allows long words to be able to be broken and wrap onto the next line. Show de
+                 <div id="infoUser">username</div>
+                 <div id="infoTime">12-31-31 12:12</div>
+            </div>
             <div class="message">
                The word-wrap property allows long words to be able to be broken and wrap onto the next line. Show de
                  <div id="infoUser">username</div>
@@ -40,16 +46,31 @@
                  <div id="infoUser">username</div>
                  <div id="infoTime">12-31-31 12:12</div>
             </div>
+            <div class="message">
+               The word-wrap property allows long words to be able to be broken and wrap onto the next line. Show de
+                 <div id="infoUser">username</div>
+                 <div id="infoTime">12-31-31 12:12</div>
+            </div>
             
          </div>
       </div>
+   </div>
 
       <div class="showMoreBtn">
         show more messages
       </div>
       <div class="row">
-      <textarea class="sendNewMessage"></textarea>
-      <div class="sendBtn"></div>
-      </div>
+       <textarea [(ngModel)]="message" class="sendNewMessage" maxlength="80"></textarea>
+      
+       <div class="sendBtn" (click)="postMessage()" *ngIf="this.timeLeft==0">
+             <div id="sendLabel" >SEND</div>
+             <div style="font-size:12px;">{{message!.length}}/80</div>
+       </div>
+
+       <div class="sendBtn" *ngIf="this.timeLeft!=0">
+         <div style="margin: 15px;">{{this.timeLeft}}</div>
+       </div>
+      
+   </div>
       
    </div>

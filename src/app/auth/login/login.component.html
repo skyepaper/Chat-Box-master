@@ -1,7 +1,6 @@
 <div class="mat-dialog-container">
     <button id="closeBtn" mat-dialog-close>X</button>
-    <form [formGroup]="loginForm" >
-    <!--(ngSubmit)="onSubmit()">-->
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <fieldset>
         <legend>Login Form</legend>
     
@@ -11,7 +10,12 @@
             <input type="text" id="username" formControlName="username">
         
             <label for="password">password</label>
-            <input type="text" id="password" formControlName="password">
+            <input [type]="this.tickValue?'password':'text'" id="password" formControlName="password">
+
+            <div class=" row">
+                <input type="checkbox" id="tickbox" (change)="tickbox()">
+                <div id="tickboxLabel">show password</div>
+            </div>
        
             <button id="submitBtn" type="submit">submit</button>
             <u id="link" (click)="openRegister()" mat-dialog-close>not registered?</u>
