@@ -23,7 +23,7 @@ openLogin() {
 
     this.dialog.open(LoginComponent,dialogConfig);
 }
-openRegister() {
+openRegister() { 
 
   const dialogConfig = new MatDialogConfig();
 
