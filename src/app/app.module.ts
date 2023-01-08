@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule, DatePipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import {ReactiveFormsModule } from '@angular/forms';
 import {FormsModule } from '@angular/forms';
@@ -16,6 +17,8 @@ import { UsersComponent } from './users/users.component';
 import { AboutComponent } from './about/about.component';
 import { NewMessageComponent } from './new-message/new-message.component';
 import { ProfileComponent } from './profile/profile.component';
+import { FriendRequestComponent } from './friendRequest/friend-request.component';
+import { AlertMessageComponent } from './alert-message/alert-message.component';
 
 @NgModule({
   declarations: [
@@ -27,18 +30,22 @@ import { ProfileComponent } from './profile/profile.component';
     UsersComponent,
     AboutComponent,
     NewMessageComponent,
-    ProfileComponent
+    ProfileComponent,
+    FriendRequestComponent,
+    AlertMessageComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+   
   ],
-  providers: [],
+  providers: [DatePipe,NavComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

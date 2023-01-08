@@ -4,5 +4,5 @@ export interface IMessage{
     sender: string;
     receiver: string;
     message:string;
-    date:Date;
+    date:string;
     }

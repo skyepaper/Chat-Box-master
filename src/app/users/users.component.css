@@ -38,10 +38,10 @@
     -webkit-border-radius: 1em;
 }
 #loader{
-    height: 150px;
+    height: 100px;
     width: 150px;
-    margin-left: 300px;
-    margin-top: 150px;
+    margin-left: 380px;
+    margin-top: 80px;
 }
 .button{
     border-block-style: solid;

@@ -2,91 +2,28 @@
     <div id="banner">
         <div id="text">USERS</div>
     </div>
-    
-    <div id="messageList">
+    <img  id="loader" *ngIf="this.loaderFlag==0" src="../../assets/loading.gif">
+    <div id="messageList"*ngIf="this.loaderFlag==1">
           
-        <div class="message friend">
+      <div *ngFor="let user of this.users">
+        <div class="message friend" *ngIf="this.checkFriend(user.username)">
           <div style="margin-left:10px;">
-            username
-            <div class="button sendMessageBtn"> SEND MESSAGE</div>
-            <div class="detail">Posts: 6</div>
-            <div class="detail">Friends: 6</div>
+            {{user.username}}
+            <div *ngIf="this.curUser!=null" class="button sendMessageBtn"> SEND MESSAGE</div>
+            <div class="detail">Posts: {{this.getPostCount(user.username)}}</div>
+            <div class="detail">Friends: {{user.friends.length || 0}}</div>
            </div>
         </div>
 
-        <div class="message">
+        <div class="message" *ngIf="!this.checkFriend(user.username)">
             <div style="margin-left:10px;">
-              username
-              <div class="button friendRequestBtn"> FRIEND REQUEST</div>
-              <div class="detail">Posts: 6</div>
-              <div class="detail">Friends: 6</div>
+              {{user.username}}
+              <div *ngIf="this.curUser!=null" class="button friendRequestBtn" (click)="makeFriendRequest(user.username)"> FRIEND REQUEST</div>
+              <div class="detail">Posts: {{this.getPostCount(user.username)}}</div>
+              <div class="detail">Friends: {{user.friends.length || 0}}</div>
              </div>
           </div>
-          <div class="message">
-            <div style="margin-left:10px;">
-              username
-              <div class="button friendRequestBtn"> FRIEND REQUEST</div>
-              <div class="detail">Posts: 6</div>
-              <div class="detail">Friends: 6</div>
-             </div>
-          </div>
-          <div class="message">
-            <div style="margin-left:10px;">
-              username
-              <div class="button friendRequestBtn"> FRIEND REQUEST</div>
-              <div class="detail">Posts: 6</div>
-              <div class="detail">Friends: 6</div>
-             </div>
-          </div>
-          <div class="message">
-            <div style="margin-left:10px;">
-              username
-              <div class="button friendRequestBtn"> FRIEND REQUEST</div>
-              <div class="detail">Posts: 6</div>
-              <div class="detail">Friends: 6</div>
-             </div>
-          </div>
-          <div class="message">
-            <div style="margin-left:10px;">
-              username
-              <div class="button friendRequestBtn"> FRIEND REQUEST</div>
-              <div class="detail">Posts: 6</div>
-              <div class="detail">Friends: 6</div>
-             </div>
-          </div>
-          <div class="message">
-            <div style="margin-left:10px;">
-              username
-              <div class="button friendRequestBtn"> FRIEND REQUEST</div>
-              <div class="detail">Posts: 6</div>
-              <div class="detail">Friends: 6</div>
-             </div>
-          </div>
-          <div class="message">
-            <div style="margin-left:10px;">
-              username
-              <div class="button friendRequestBtn"> FRIEND REQUEST</div>
-              <div class="detail">Posts: 6</div>
-              <div class="detail">Friends: 6</div>
-             </div>
-          </div>
-          <div class="message">
-            <div style="margin-left:10px;">
-              username
-              <div class="button friendRequestBtn"> FRIEND REQUEST</div>
-              <div class="detail">Posts: 6</div>
-              <div class="detail">Friends: 6</div>
-             </div>
-          </div>
-          <div class="message">
-            <div style="margin-left:10px;">
-              username
-              <div class="button friendRequestBtn"> FRIEND REQUEST</div>
-              <div class="detail">Posts: 6</div>
-              <div class="detail">Friends: 6</div>
-             </div>
-          </div>
-          
+        </div>
 
     </div>
  </div>

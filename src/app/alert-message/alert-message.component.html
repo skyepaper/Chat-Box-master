@@ -1,0 +1,20 @@
+<div class="mat-dialog-container" *ngIf="data[0]=='removeUser'" style="height:200px;">
+    
+       <div id="friendRequestSent" >
+           Remove '{{this.data[1]}}' from Friend List?
+       </div>
+       <button class="sendBtn" (click)="this.removeFriend()" mat-dialog-close>Yes</button>
+       <button class="sendBtn" style="float:right;" mat-dialog-close>No</button>
+ 
+</div>
+
+<div class="mat-dialog-container" *ngIf="data[0]=='acceptFriend'">
+  
+       <textarea [(ngModel)]="message" class="sendNewMessage" maxlength="80" readonly></textarea>
+       <div id="friendRequestSent">
+          Accept '{{this.data[1]}}' as friend?
+       </div>
+       <button class="sendBtn" (click)="this.acceptAsFriend()" mat-dialog-close>Yes</button>
+       <button class="sendBtn" style="float:right;" mat-dialog-close>No</button>
+  
+</div>

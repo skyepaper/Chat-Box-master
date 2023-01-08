@@ -5,120 +5,68 @@
     <div id="messageContainer">
         <div class="row">
             <div class="col">
-                <img src='https://www.shutterstock.com/image-vector/book-icon-sign-design-260nw-553945819.jpg'>
-                <button id="editBtn">new image</button>
-          
+                <div *ngIf="this.imageFlag==0">
+                  <img *ngIf="this.user?.image==''" src='../../assets/question.jpg'>
+                  <img *ngIf="this.user?.image" src={{this.user?.image}} onerror="this.src='../../assets/question.jpg'">
+                  <button id="editBtn" (click)="this.changeImage()">new image</button>
+                </div>
+                <div *ngIf="this.imageFlag==1">
+                  <input style="margin-top:128px;width:132px;"  [(ngModel)]="newUrl">
+                  <button id="editBtn" (click)="this.saveImage()">save url</button>
+                </div>
+               
                 <div id="userContainer">
-                  <div class="user">
-                     username
-                     <div id="removeUser">X</div>
-                  </div>
-                  <div class="user">
-                     username
-                     <div id="removeUser">X</div>
-                  </div>
-                  <div class="user">
-                     username
-                     <div id="removeUser">X</div>
-                  </div>
-                  <div class="user">
-                     username
-                     <div id="removeUser">X</div>
-                  </div>
-                  <div class="user">
-                     username
-                     <div id="removeUser">X</div>
-                  </div>
-                  <div class="user">
-                     username
-                     <div id="removeUser">X</div>
-                  </div>
-                  <div class="user">
-                     username
-                     <div id="removeUser">X</div>
-                  </div>
-                  <div class="user">
-                     username
-                     <div id="removeUser">X</div>
-                  </div>
-                  <div class="user">
-                     username
-                     <div id="removeUser">X</div>
-                  </div>
-                  <div class="user">
-                     username
-                     <div id="removeUser">X</div>
-                  </div>
-                  <div class="user">
-                     username
-                     <div id="removeUser">X</div>
-                  </div>
+                  <div  *ngFor="let user of this.friends">
+                     
+                    <div  class="user" *ngIf="user==this.userSec" style="background-color: #11dbdbc5;">
+                        <div>{{user}}</div>
+                        <div id="removeUser" (click)="removeUser(user)">X</div>
+                    </div>
+                   
+                    <div class="user" *ngIf="user!=this.userSec">
+                      <div (click)="this.loadChat(user,6);this.loaderFlag=1;">{{user}}</div>
+                      <div id="removeUser" (click)="removeUser(user)">X</div>
+                    </div>
 
+                  </div>
                  
                 </div>
             </div>
             <div class="col">
                 <div id="messageList">
-                  <div class="row">
-                     <div>
+                  <div *ngIf="this.loaderFlag==2">
+                    <div *ngFor="let message of this.messagesToPublishShow">
   
-              <div class="message">
-                 The word-wrap property allows long words to be able to be broken and wrap onto the next line. Show de
-                   <div id="infoUser">username</div>
-                   <div id="infoTime">12-31-31 12:12</div>
+              <div class="message" *ngIf="message.sender!=this.userSec" style="float:left;">
+                  {{message.message}}
+                   <div id="infoUser">{{message.sender}}</div>
+                   <div id="infoTime">{{message.date}}</div>
               </div>
-              <div class="message">
-                 The word-wrap property allows long words to be able to be broken and wrap onto the next line. Show de
-                   <div id="infoUser">username</div>
-                   <div id="infoTime">12-31-31 12:12</div>
-              </div>
-              <div class="message">
-                 The word-wrap property allows long words to be able to be broken and wrap onto the next line. Show de
-                   <div id="infoUser">username</div>
-                   <div id="infoTime">12-31-31 12:12</div>
-              </div>
-              <div class="message">
-                 The word-wrap property allows long words to be able to be broken and wrap onto the next line. Show de
-                   <div id="infoUser">username</div>
-                   <div id="infoTime">12-31-31 12:12</div>
-              </div>
-             
-                     </div>
-                     <div id="secondRow">
-  
-              <div class="message">
-                 The word-wrap property allows long words to be able to be broken and wrap onto the next line. Show de
-                   <div id="infoUser">username</div>
-                   <div id="infoTime">12-31-31 12:12</div>
-              </div>
-              <div class="message">
-                 The word-wrap property allows long words to be able to be broken and wrap onto the next line. Show de
-                   <div id="infoUser">username</div>
-                   <div id="infoTime">12-31-31 12:12</div>
-              </div>
-              <div class="message">
-                 The word-wrap property allows long words to be able to be broken and wrap onto the next line. Show de
-                   <div id="infoUser">username</div>
-                   <div id="infoTime">12-31-31 12:12</div>
-              </div>
-              <div class="message">
-                 The word-wrap property allows long words to be able to be broken and wrap onto the next line. Show de
-                   <div id="infoUser">username</div>
-                   <div id="infoTime">12-31-31 12:12</div>
-              </div>
+              <div class="message" *ngIf="message.sender==this.userSec" style="float:right;">
+                {{message.message}}
+                 <div id="infoUser">{{message.sender}}</div>
+                 <div id="infoTime">{{message.date}}</div>
+            </div>
               
-                     </div>
-                  </div>
+                    </div>
+                </div>
+                  <img  id="loader" *ngIf="this.loaderFlag==1" src="../../assets/loading.gif">
                </div>
     
-               <div>
-                  <div class="showMoreBtn">show more messages</div>
+               <div class="showMoreBtn" (click)="showMore()">
+                  show more messages ({{this.numMessagesToShow}})
+                </div>
+                <div class="row">
+                 <textarea [(ngModel)]="message" class="sendNewMessage" maxlength="80"></textarea>
+                
+                 <div class="sendBtn" (click)="postMessage()" *ngIf="this.timeLeft==0">
+                       <div id="sendLabel" >SEND</div>
+                       <div style="font-size:12px;">{{message!.length}}/80</div>
+                 </div>
           
-                  <div class="row">
-                      <textarea class="sendNewMessage"></textarea>
-                      <div class="sendBtn"></div>
-                  </div>
-               </div>
+                 <div class="sendBtn" *ngIf="this.timeLeft!=0">
+                   <div style="margin: 15px;">{{this.timeLeft}}</div>
+                 </div>
 
             </div>
     </div>

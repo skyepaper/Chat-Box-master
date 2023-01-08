@@ -4,95 +4,21 @@
     </div>
     <div id="messageContainer">
       <div id="messageList">
-          
-        <div class="message friend">
-          <div style="margin-left:10px;">
-            username
-            <div class="button delMessageBtn"> X</div>
-            <div class="button sendMessageBtn"> NEW MESSAGE</div>
-            <div class="detail">12.11.2022 13:20</div>
-           </div>
-        </div>
-        <div class="message friend">
-            <div style="margin-left:10px;">
-              username
-              <div class="button delMessageBtn"> X</div>
-              <div class="button sendMessageBtn"> NEW MESSAGE</div>
-              <div class="detail">12.11.2022 13:20</div>
-             </div>
-          </div>
-          <div class="message friend">
-            <div style="margin-left:10px;">
-              username
-              <div class="button delMessageBtn"> X</div>
-              <div class="button sendMessageBtn"> NEW MESSAGE</div>
-              <div class="detail">12.11.2022 13:20</div>
-             </div>
-          </div>
-        
-        <div class="message">
-            <div style="margin-left:10px;">
-              username
-              <div class="button delMessageBtn"> X</div>
-              <div class="button friendRequestBtn"> FRIEND REQUEST</div>
-              <div class="detail">12.11.2022 13:20</div>
-             </div>
-          </div>
-
-          <div class="message friend">
-            <div style="margin-left:10px;">
-              username
-              <div class="button delMessageBtn"> X</div>
-              <div class="button sendMessageBtn"> NEW MESSAGE</div>
-              <div class="detail">12.11.2022 13:20</div>
-             </div>
-          </div>
-          
-          <div class="message">
-              <div style="margin-left:10px;">
-                username
-                <div class="button delMessageBtn"> X</div>
-                <div class="button friendRequestBtn"> FRIEND REQUEST</div>
-                <div class="detail">12.11.2022 13:20</div>
-               </div>
-            </div>
-
-            <div class="message friend">
-                <div style="margin-left:10px;">
-                  username
-                  <div class="button delMessageBtn"> X</div>
-                  <div class="button sendMessageBtn"> NEW MESSAGE</div>
-                  <div class="detail">12.11.2022 13:20</div>
-                 </div>
-              </div>
-              
-              <div class="message">
-                  <div style="margin-left:10px;">
-                    username
-                    <div class="button delMessageBtn"> X</div>
-                    <div class="button friendRequestBtn"> FRIEND REQUEST</div>
-                    <div class="detail">12.11.2022 13:20</div>
-                   </div>
-                </div>
-
-                <div class="message friend">
+        <div *ngIf="this.loaderFlag==1">
+           <div *ngFor="let post of this.userPost">
+                <div class="message">
                     <div style="margin-left:10px;">
-                      username
-                      <div class="button delMessageBtn"> X</div>
-                      <div class="button sendMessageBtn"> NEW MESSAGE</div>
-                      <div class="detail">12.11.2022 13:20</div>
+                      {{post.sender}}
+                      <div class="button delMessageBtn" (click)="this.deleteMessage(post.id);this.loaderFlag=1;"> X</div>
+                      <div *ngIf="post.friendRequest=='false'" class="button sendMessageBtn"> NEW MESSAGE</div>
+                      <div *ngIf="post.friendRequest=='true'" class="button friendRequestBtn" (click)="this.acceptFriendRequest(post.sender,post.message)"> FRIEND REQUEST</div>
+                      <div class="detail">{{post.dateStr}}</div>
                      </div>
                   </div>
                   
-                  <div class="message">
-                      <div style="margin-left:10px;">
-                        username
-                        <div class="button delMessageBtn"> X</div>
-                        <div class="button friendRequestBtn"> FRIEND REQUEST</div>
-                        <div class="detail">12.11.2022 13:20</div>
-                       </div>
-                    </div>
-          
+           </div>
+        </div>
+        <img  id="loader" *ngIf="this.loaderFlag==0" src="../../assets/loading.gif">
       </div>
 
       <div class="button clearAllBtn"> clear mailbox</div>

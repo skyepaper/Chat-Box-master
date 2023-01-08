@@ -10,7 +10,7 @@ export class AboutComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    setTimeout(()=>{this.loadFlag=1;},10000);
+    setTimeout(()=>{this.loadFlag=1;},2000);
   }
 
 }

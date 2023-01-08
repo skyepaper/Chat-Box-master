@@ -1,0 +1,19 @@
+<div class="mat-dialog-container">
+    <img  id="loader" src="../../assets/letter.gif">
+    <div id="label">to: {{this.data}}</div>
+  
+  <div *ngIf="this.messageSendFlag==0">
+    <textarea [(ngModel)]="message" class="sendNewMessage" maxlength="80"></textarea>
+    <div id="counter">{{message!.length}}/80</div>
+    <button class="sendBtn" (click)="sendFriendRequest()" >Yes</button>
+    <button class="sendBtn" style="float:right;" mat-dialog-close>No</button>
+  </div>
+
+  <div *ngIf="this.messageSendFlag==1">
+    <div id="friendRequestSent">
+        Friend Request sent!
+    </div>
+    <button class="sendBtn" style="width:100%;" mat-dialog-close>OK</button>
+  </div>
+
+</div>

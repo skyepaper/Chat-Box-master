@@ -1,0 +1,36 @@
+.mat-dialog-container{
+    height:300px;
+    width:360px;
+    border-color: white;
+    border:2px solid;
+}
+#friendRequestSent{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height:90px;
+    width:300px;
+    font-size:30px;
+    font-style:oblique;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+.sendBtn{
+    height:30px;
+    width:49%;
+    margin: 1px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.sendNewMessage{
+    background-color: rgb(85, 74, 14);
+    color:black;
+    text-align: center;
+    margin-top: 1px;
+    height:90px;
+    width:300px;
+    -webkit-border-radius: 1em;
+    word-wrap: break-word;
+    font-size:20px;
+    position: relative;
+    resize:none;
+}

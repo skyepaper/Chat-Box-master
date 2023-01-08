@@ -43,10 +43,13 @@ import { IUser } from 'src/app/interface/user';
 
 
   async getUsers(){
+    var interval=setInterval(()=>{
       this.http.get<IUser[]>('https://63af5f75649c73f572baa737.mockapi.io/users').subscribe({
         next:(value)=>{
           this.users=value;
         }});
+        if(this.users?.length!>0)clearInterval(interval);
+      },1000);
     }
 
   checkError(user:IUser){
@@ -80,7 +83,6 @@ import { IUser } from 'src/app/interface/user';
     if(this.errorMessage)return;
 
     let findUser=this.users?.find(u=>u.username===user.username)!;
-    console.log(findUser);
     this.checkErrorStrong(user,findUser);
 
     if(!this.errorMessage){

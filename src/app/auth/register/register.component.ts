@@ -19,6 +19,8 @@ export class RegisterComponent {
   }
 public errorMessage:string='';
 public tickValue=true;
+friends:string[]=[];
+image:string='';
   
   registerForm = new FormGroup({
     username: new FormControl(''),
@@ -65,9 +67,12 @@ checkErrorStrong(user:IUser,findUser:IUser){
 
 async onSubmit() {
   this.errorMessage='';
+ 
   let user=<IUser>{
     username:this.registerForm.controls['username'].value,
     password:this.registerForm.controls['password'].value,
+    image:this.image,
+    friends:this.friends,
   }
   let confirm=this.registerForm.controls['confirmPassword'].value;
   
@@ -88,7 +93,6 @@ async onSubmit() {
   }
 
   let findUser=this.users?.find(u=>u.username===user.username)!;
-    console.log(findUser);
     this.checkErrorStrong(user,findUser);
 
     if(!this.errorMessage){

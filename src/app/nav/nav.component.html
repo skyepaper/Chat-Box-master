@@ -2,25 +2,19 @@
     <li><a class="active" style="margin-left: 500px;" routerLink="wall">Wall</a></li>
     <li><a class="active"  routerLink="users">Users</a></li>
     <li><a class="active"  routerLink="about">About</a></li>
-    <li><a class="active alert"  routerLink="newMessage">New Message</a></li>
+    <li><a class="active alert"  *ngIf="this.postboxFlag==1" routerLink="newMessage">New Message</a></li>
     
     <div >
-<div *ngIf="getUsername()=='anon'">
+<div *ngIf="!this.user?.username!">
     <li style="float:right"><a class="active" (click)="openRegister()">Register</a></li>
     <li style="float:right"><a class="active" (click)="openLogin()">Login</a></li>
     <li style="float:right"><a>anon</a></li>
 </div>
-<div *ngIf="getUsername()!='anon'">
+<div *ngIf="this.user?.username!">
     <li style="float:right"><a class="active" (click)="logout()">Logout</a></li>
     <li style="float:right"><a class="active" routerLink="profile">Profile</a></li>
-    <li style="float:right"><a>{{getUsername()}}</a></li>
+    <li style="float:right"><a>{{this.user?.username!}}</a></li>
 </div>
-    </div>
-
-  <!--  <div *ngIf="readLocalStorageValue('token')">
-        <li style="float:right"><a class="active" routerLink="logout">Logout</a></li>
-        <li style="float:right"><a class="active" routerLink="profile">Profile</a></li>
-        <li style="float:right"><a *ngIf="getUsername()=='admin'" class="active" routerLink="addBook">Add Book</a></li>
-        <li style="float:right"><a>{{getUsername()}}</a></li>
-    </div>-->
+   </div>
+   
 </ul>

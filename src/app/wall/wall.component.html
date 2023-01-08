@@ -4,60 +4,31 @@
    </div>
    <div id="messageContainer">
       <div id="messageList">
-         <div class="row">
+         <div class="row" *ngIf="this.loaderFlag==1">
          <div>
 
-            <div class="message">
-               The word-wrap property allows long words to be able to be broken and wrap onto the next line. Show de
-                 <div id="infoUser">username</div>
-                 <div id="infoTime">12-31-31 12:12</div>
-            </div>
-            <div class="message">
-               The word-wrap property allows long words to be able to be broken and wrap onto the next line. Show de
-                 <div id="infoUser">username</div>
-                 <div id="infoTime">12-31-31 12:12</div>
-            </div>
-            <div class="message">
-               The word-wrap property allows long words to be able to be broken and wrap onto the next line. Show de
-                 <div id="infoUser">username</div>
-                 <div id="infoTime">12-31-31 12:12</div>
-            </div>
-            <div class="message">
-               The word-wrap property allows long words to be able to be broken and wrap onto the next line. Show de
-                 <div id="infoUser">username</div>
-                 <div id="infoTime">12-31-31 12:12</div>
+            <div *ngFor="let message of this.messagesLeft" class="message">
+                 <div>{{message.message}}</div>
+                 <div id="infoUser">{{message.sender}}</div>
+                 <div id="infoTime">{{message.date}}</div>
             </div>
            
          </div>
          <div id="secondRow">
 
-            <div class="message">
-               The word-wrap property allows long words to be able to be broken and wrap onto the next line. Show de
-                 <div id="infoUser">username</div>
-                 <div id="infoTime">12-31-31 12:12</div>
-            </div>
-            <div class="message">
-               The word-wrap property allows long words to be able to be broken and wrap onto the next line. Show de
-                 <div id="infoUser">username</div>
-                 <div id="infoTime">12-31-31 12:12</div>
-            </div>
-            <div class="message">
-               The word-wrap property allows long words to be able to be broken and wrap onto the next line. Show de
-                 <div id="infoUser">username</div>
-                 <div id="infoTime">12-31-31 12:12</div>
-            </div>
-            <div class="message">
-               The word-wrap property allows long words to be able to be broken and wrap onto the next line. Show de
-                 <div id="infoUser">username</div>
-                 <div id="infoTime">12-31-31 12:12</div>
-            </div>
-            
+            <div *ngFor="let message of this.messagesRight" class="message">
+               <div>{{message.message}}</div>
+               <div id="infoUser">{{message.sender}}</div>
+               <div id="infoTime">{{message.date}}</div>
+          </div>
+           
          </div>
       </div>
+      <img  id="loader" *ngIf="this.loaderFlag==0" src="../../assets/loading.gif">
    </div>
 
-      <div class="showMoreBtn">
-        show more messages
+      <div class="showMoreBtn" (click)="showMore()">
+        show more messages ({{this.numMessagesToShow}})
       </div>
       <div class="row">
        <textarea [(ngModel)]="message" class="sendNewMessage" maxlength="80"></textarea>

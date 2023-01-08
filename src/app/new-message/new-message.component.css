@@ -96,5 +96,10 @@
     margin-right: 20px;
     background-color: rgb(131, 25, 39);
 }
-
+#loader{
+    height: 100px;
+    width: 150px;
+    margin-left: 300px;
+    margin-top: 150px;
+}
 

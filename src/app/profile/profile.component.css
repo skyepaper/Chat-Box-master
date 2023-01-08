@@ -37,10 +37,9 @@
     color:black;
     text-align: center;
     padding:10px;
-    margin: 10px;
-    margin-bottom: 20px;
-    height:60px;
-    width:260px;
+    margin: 3px;
+    height:40px;
+    width:360px;
     -webkit-border-radius: 1em;
     word-wrap: break-word;
     font-size:15px;
@@ -76,7 +75,7 @@
     width:460px;
     -webkit-border-radius: 1em;
     word-wrap: break-word;
-    font-size:25px;
+    font-size:20px;
     position: relative;
     resize:none;
 }
@@ -96,6 +95,10 @@
     position:static;
     resize:none;
 }
+.sendBtn:hover{
+    background-color: #ad4d4d;
+    cursor: pointer;
+}
 .showMoreBtn{
     background-color: #a70f0f;
     color:white;
@@ -104,11 +107,21 @@
     margin-top: -20px;
     margin-left: 30px;
     height:20px;
-    width:150px;
+    width:160px;
     -webkit-border-radius: 1em;
     word-wrap: break-word;
     font-size:15px;
     position: relative;
+}
+.showMoreBtn:hover{
+    background-color: #ad4d4d;
+    cursor: pointer;
+}
+#sendLabel{
+    margin-top:10px;
+    margin-left: 20px;
+    font-size: 30px;
+    font-family: 'Courier New', Courier, monospace;
 }
 img{
     height: 125px;
@@ -129,8 +142,9 @@ img{
     padding-left: 10px;
     margin-top: 5px;
     height:20px;
-    width:120px;
+    width:130px;
     -webkit-border-radius: 1em;
+    cursor:pointer;
 }
 #userContainer{
     height:245px;
@@ -140,10 +154,17 @@ img{
 }
 #removeUser{
     float:right;
+    margin-top: -18px;
     border-style: solid;
     background-color: #a70f0f;
     font-size: 10px;
     padding:2px;
     border-radius: 100%;
     cursor: pointer;
+}
+#loader{
+    height: 100px;
+    width: 150px;
+    margin-left: 250px;
+    margin-top: 150px;
 }
