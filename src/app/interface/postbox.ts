@@ -4,6 +4,5 @@ export interface IPostbox{
     receiver: string;
     message:string; 
     friendRequest:string;
-    date:Date;
-    dateStr:string;
+    date:string;
     }

@@ -18,3 +18,13 @@
        <button class="sendBtn" style="float:right;" mat-dialog-close>No</button>
   
 </div>
+
+<div class="mat-dialog-container" *ngIf="data[0]=='clearMail'" style="height:200px;">
+  
+       <div id="friendRequestSent" >
+              Delete all messages?
+          </div>
+          <button class="sendBtn" (click)="this.clearAllMail()" mat-dialog-close>Yes</button>
+          <button class="sendBtn" style="float:right;" mat-dialog-close>No</button>
+  
+</div>

@@ -6,6 +6,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
 import { RegisterComponent } from '../register/register.component';
 import { IUser } from 'src/app/interface/user';
 
+import * as crypto from 'crypto-js';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -43,13 +45,9 @@ import { IUser } from 'src/app/interface/user';
 
 
   async getUsers(){
-    var interval=setInterval(()=>{
-      this.http.get<IUser[]>('https://63af5f75649c73f572baa737.mockapi.io/users').subscribe({
-        next:(value)=>{
-          this.users=value;
-        }});
-        if(this.users?.length!>0)clearInterval(interval);
-      },1000);
+    var cypher=localStorage.getItem('passUsers');
+    var cypherDe=crypto.AES.decrypt(cypher!,'key');
+    this.users=JSON.parse(cypherDe.toString(crypto.enc.Utf8));
     }
 
   checkError(user:IUser){

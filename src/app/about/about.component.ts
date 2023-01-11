@@ -6,11 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-  loadFlag:number=0;
+  linkWord:string=''
   constructor() { }
 
   ngOnInit(): void {
-    setTimeout(()=>{this.loadFlag=1;},2000);
+    
   }
 
 }

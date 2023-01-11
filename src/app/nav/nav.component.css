@@ -29,6 +29,7 @@ ul {
   }
   .active:hover {
     background-color: #11dbdbc5;
+    cursor: pointer;
   }
   .alert{
     background-color: #a70f0fbe;

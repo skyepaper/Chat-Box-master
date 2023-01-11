@@ -100,7 +100,7 @@ postMessagesOnWall(){
        }
    }
  //  console.log('post-on-wall');
-  },5000);
+  },2000);
   }
   
 }

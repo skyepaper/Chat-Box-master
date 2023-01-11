@@ -16,16 +16,13 @@ export class FriendRequestComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: string,private http:HttpClient) { }
   messageSendFlag=0;
   
-  date!: Date;
-  dateString:string="";
-  locale:string='en-US';
+  date:string="";
   message:string|null="";
   public user:IUser|null=null;
   
 
   ngOnInit(): void {
-    this.date=new Date();
-  this.dateString=formatDate(this.date,'d MMM - h:mm a',this.locale);
+  this.date=formatDate(new Date(),'d MMM - h:mm a','en-US');
   }
   
   sendFriendRequest(){
@@ -36,13 +33,13 @@ export class FriendRequestComponent implements OnInit {
       receiver: this.data,
       message:this.message,
       friendRequest:'true',
-      date:this.date,
-      dateStr:this.dateString
+      date:this.date
     }
   if(this.message){
     this.http.post<IPostbox>('https://63af5f75649c73f572baa737.mockapi.io/postbox',request).subscribe();
+    this.messageSendFlag=1;
   }
-  this.messageSendFlag=1;
+  else this.messageSendFlag=2;
   }
   getUsername(){
     if(localStorage.getItem('user')){

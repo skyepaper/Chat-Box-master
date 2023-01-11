@@ -8,7 +8,7 @@ import { AlertMessageComponent } from '../alert-message/alert-message.component'
 import { IPostbox } from '../interface/postbox';
 import { IUser } from '../interface/user';
 
-//import { postboxFlag } from '../../app/nav/nav.component';
+import * as crypto from 'crypto-js';
 
 @Component({
   selector: 'app-new-message',
@@ -26,51 +26,14 @@ export class NewMessageComponent implements OnInit {
   
 
   ngOnInit(): void {
-    this.getUsername();
-    this.loaderFlag=0;
-    this.reloadPage();
+   this.reloadPage();
+  }
 
-    var interval=setInterval(()=>{
-      if(this.userPost.length==0)this.loaderFlag=0;
-      this.reloadPage();
-    },5000);
-  }
-  getPost(){ 
-    this.http.get<IPostbox[]>('https://63af5f75649c73f572baa737.mockapi.io/postbox')
-    .subscribe({
-      next:(value)=>{
-        this.allPost=value;
-      }});
-if(this.allPost.length>0)
-    this.userPost=this.allPost.filter(p=>p.receiver==this.user?.username);
-    
-  }
-  getUsername(){
-    if(localStorage.getItem('user')){
-      this.user=JSON.parse(localStorage.getItem('user')!);
+
+  getUser(){
+    this.user=JSON.parse(localStorage.getItem('user')!);
+}
   
-      return this.user?.username;
-    }
-    return "anon";
-  }
-  reloadPage(){
-    this.allPost=[];
-
-    var interval=setInterval(()=>{
-      if(this.userPost.length==0){
-        this.getPost();
-        if(this.allPost.length>0){
-          clearInterval(interval);
-        //  this.router.navigate(['/wall']);
-        }
-      }
-    else {
-      this.loaderFlag=1;
-
-      clearInterval(interval);
-    }
-  },5000);
-  }
   acceptFriendRequest(username:string,message:string){
     const dialogConfig = new MatDialogConfig();
 
@@ -83,10 +46,37 @@ if(this.allPost.length>0)
     this.dialog.open(AlertMessageComponent,dialogConfig);
   }
   deleteMessage(id:number){
-    this.http.delete<IPostbox[]>(`https://63af5f75649c73f572baa737.mockapi.io/postbox/${id}`).subscribe();
-    this.userPost=[];
-    this.loaderFlag=0;
-    this.reloadPage();
+    this.http.delete<IPostbox>(`https://63af5f75649c73f572baa737.mockapi.io/postbox/${id}`).subscribe();
   }
+  clearMail(){
+    const dialogConfig = new MatDialogConfig();
 
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.hasBackdrop=true;
+    dialogConfig.closeOnNavigation=false;
+    dialogConfig.data=['clearMail']
+
+    this.dialog.open(AlertMessageComponent,dialogConfig);
+
+  }
+  reloadPage(){
+    var interval=setInterval(()=>{
+      this.getUser();
+      if(this.userPost.length==0)this.loaderFlag=0;
+      
+      var cypher=localStorage.getItem('passPostbox');
+      var cypherDe=crypto.AES.decrypt(cypher!,'key');
+      this.allPost=JSON.parse(cypherDe.toString(crypto.enc.Utf8));
+  
+    this.userPost=this.allPost.filter(u=>u.receiver==this.user?.username);
+    if(this.userPost.length>0)this.loaderFlag=1;
+
+    //  console.log('post-user-list');
+    },2000);
+  }
+  navigateProfile(username:string){
+    localStorage.setItem('navigate',username);
+    this.router.navigate(['/profile']);
+  }
 }

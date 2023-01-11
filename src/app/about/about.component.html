@@ -2,12 +2,238 @@
     <div id="banner">
         <div id="text">ABOUT</div>
     </div>
-    <div id="messageList">
+    <div id="container-content" *ngIf="this.linkWord==''">
+        <div id="intro">
+         'Chatbox' is a personal project, imitating a social messaging platform, where users can become friends and exchange messages.
+        </div>
+        <div id="intro" style="font-size:15px;text-align:center;">
+         project finished --10 Jan 2023--
+        </div>
+        <h2 >Read more about:</h2>
+        <div class="list" (click)="this.linkWord='navbar'">--Navigation bar</div>
+        <div class="list" (click)="this.linkWord='anime'">----Animation</div>
+        <div class="list" (click)="this.linkWord='login'">------Login form</div>
+        <div class="list" (click)="this.linkWord='register'">--------Register form</div>
+        <div class="list" (click)="this.linkWord='wall'">----------Wall</div>
+        <div class="list" (click)="this.linkWord='users'">------------Users</div>
+        <div class="list" (click)="this.linkWord='newMessage'">--------------New Messages</div>
+        <div class="list" (click)="this.linkWord='profile'">----------------Profile</div>
+        <div class="list" (click)="this.linkWord='blueprint'" id="blueprint">--BLUEPRINT--</div>
+    </div>
+
+    <div id="container-content" *ngIf="this.linkWord=='navbar'">
+        <div class="backBtn" (click)="this.linkWord=''">-----TO GO BACK</div>
+        <h2>Navigation bar</h2>
+        <div id="intro" style="font-size:20px;">
+            Navigation bar is always shown. It gives users different options, according to login status.
+        </div>
+        <img src="../../assets/pics/image1.bmp">
+        <div class="detail">--- if not logged in- username is 'anon'</div>
+        <div class="detail">--- you have option to LOGIN and REGISTER</div>
+        <div class="detail">--- you have option to post on WALL and see USERS</div>
+        
+        <img src="../../assets/pics/image2.bmp">
+        <div class="detail">--- if logged in- username is shown</div>
+        <div class="detail">--- you have option to LOGOUT</div>
+        <div class="detail">--- you have option to post on WALL and see USERS</div>
+        <div class="detail">--- you have access to personal PROFILE page</div>
+
+        <img src="../../assets/pics/image3.bmp">
+        <div class="detail">--- in case there are NEW MESSAGES in the postbox</div>
        
-        <img  id="loader" *ngIf="loadFlag==0" src="../assets/loading.gif">
-          <div *ngIf="loadFlag==1" class="message">the main body of a book or other piece of writing, as distinct from other material such as notes, appendices, and illustrations.
-             "the pictures are clear and relate well to the text"</div>
-         
-          
+    </div>
+
+    <div id="container-content" *ngIf="this.linkWord=='anime'">
+        <div class="backBtn" (click)="this.linkWord=''">-----TO GO BACK</div>
+        <h2>Animation</h2>
+        <div id="intro" style="font-size:20px;">
+          Application contains three custom-made animations, that show up in different situations.
+        </div>
+        <img  id="loader" src="../../assets/banner.gif">
+        <img  id="loader" style="height:100px;" src="../../assets/loading.gif">
+        <img  id="loader" src="../../assets/letter.gif">
+        <img style="margin-top: -50px;margin-left:5px;" src="../../assets/pics/image4.bmp">
+        <div class="detail">--- 1.BANNER--part of the banner, always shown</div>
+        <div class="detail">--- 2.LOADER--shown only while loading data</div>
+        <div class="detail">--- 3.LETTER--shown when sending FRIEND REQUEST</div>
+    </div>
+
+    <div id="container-content" *ngIf="this.linkWord=='login'">
+        <div class="backBtn" (click)="this.linkWord=''">-----TO GO BACK</div>
+        <h2>Login Form</h2>
+        <div id="intro" style="font-size:20px;">
+          Login Form is a pop-up window, where users can access their personal account.
+        </div>
+        <div class="row">
+            <img src="../../assets/pics/image5.bmp">
+            <div class="col" style="margin-left: 10px;">
+                <div class="detail">--- 1.USER input</div>
+                <div class="detail">--- 2.PASSWORD input</div>
+                <div class="detail">--- 3.SHOW/HIDE password tickbox</div>
+                <div class="detail">--- 4.SUBMIT button</div>
+                <div class="detail">--- 5.LINK to Register Form</div>
+                <div class="detail">--- 6.CLOSE button</div>
+                <img style="margin-top: 30px;" src="../../assets/pics/image6.bmp">
+                <div class="detail" style="margin-left: 10px;margin-top: 10px;">--- possible error messages</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="container-content" *ngIf="this.linkWord=='register'">
+        <div class="backBtn" (click)="this.linkWord=''">-----TO GO BACK</div>
+        <h2>Register Form</h2>
+        <div id="intro" style="font-size:20px;">
+          Register Form is a pop-up window, where users can create a new account.
+        </div>
+        <div class="row">
+            <img src="../../assets/pics/image7.bmp">
+            <div class="col" style="margin-left: 10px;">
+                <div class="detail">--- 1.USER input</div>
+                <div class="detail">--- 2.PASSWORD input</div>
+                <div class="detail">--- 3.CONFIRM PASSWORD input</div>
+                <div class="detail">--- 4.SHOW/HIDE password tickbox</div>
+                <div class="detail">--- 5.SUBMIT button</div>
+                <div class="detail">--- 6.LINK to Login Form</div>
+                <div class="detail">--- 7.CLOSE button</div>
+                <img style="margin-top: 20px;" src="../../assets/pics/image8.bmp">
+                <div class="detail" style="margin-left: 10px;margin-top: 10px;">--- possible error messages</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="container-content" *ngIf="this.linkWord=='wall'">
+        <div class="backBtn" (click)="this.linkWord=''">-----TO GO BACK</div>
+        <h2>Wall</h2>
+        <div id="intro" style="font-size:20px;">
+          Wall is a page, where everybody can write a message and see all messages.
+        </div>
+        <div class="row">
+            <div class="col">
+                <img src="../../assets/pics/image9.bmp">
+                <img src="../../assets/pics/image10.bmp">
+                <div class="detail">--- 1.USERNAME of sender</div>
+                <div class="detail">--- 2.MESSAGE text</div>
+                <div class="detail">--- 3.DATE and TIME of posting</div>
+            </div>
+           
+            <div class="col" style="margin-left: 10px;">
+                <div class="detail">--- 1.FIRST message</div>
+                <div class="detail">--- 2.SECOND message</div>
+                <div class="detail">--- 3.THIRD message</div>
+                <div class="detail">--- 4.SHOW MORE messages button</div>
+                <div class="detail">--- 5.MESSAGE input</div>
+                <div class="detail">--- 6.SEND button</div>
+                <img style="margin-top: 20px;" src="../../assets/pics/image11.bmp">
+                <div class="detail">--- add +6 more messages on wall, if there are more messages</div>
+                <img style="margin-top: 20px;" src="../../assets/pics/image12.bmp">
+                <div class="detail">--- counter for symbols in message, max 80 symbols</div>
+                <div class="detail">--- timer until user can post a new message, 10 sec</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="container-content" *ngIf="this.linkWord=='users'">
+        <div class="backBtn" (click)="this.linkWord=''">-----TO GO BACK</div>
+        <h2>Users</h2>
+        <div id="intro" style="font-size:20px;">
+          Users page shows a list of all users registered and information about them.
+        </div>
+        <div class="row">
+            <div class="col">
+                <img src="../../assets/pics/image13.bmp">
+                <div class="detail">--- user not logged in</div>
+                <img style="margin-top: 10px;" src="../../assets/pics/image14.bmp">
+                <div class="detail" >--- user logged in (username not on the list)</div>
+                <div class="detail" style="margin-top: 10px;">--- 1.USERNAME</div>
+                <div class="detail">--- 2.FRIENDS count</div>
+                <div class="detail">--- 3.POSTS count</div>
+                <div class="detail">--- 4.ACTION buttons</div>
+            </div>
+            
+            <div class="col" style="margin-left: 10px;">
+                <img src="../../assets/pics/image15.bmp">
+                <div class="detail">--- 1. Link to PROFILE + opens chat with user</div>
+                <div class="detail">--- 2. Send Friend Request to user</div>
+              
+                <div class="row">
+                    <img style="margin-top: 10px;" src="../../assets/pics/image16.bmp">
+                    <div class="col" style="margin-left:5px;">
+                        <img style="margin-top: 10px;" src="../../assets/pics/image17.bmp">
+                        <div class="detail">--- 1. RECEIVER username</div>
+                        <div class="detail">--- 2. MESSAGE text</div>
+                        <div class="detail">--- 3. COUNTER -max 80 </div>
+                        <div class="detail">--- 4. YES to send</div>
+                        <div class="detail">--- 5. NO to close</div>
+                    </div>
+                </div>
+              
+            </div>
+        </div>
+    </div>
+
+    <div id="container-content" *ngIf="this.linkWord=='newMessage'">
+        <div class="backBtn" (click)="this.linkWord=''">-----TO GO BACK</div>
+        <h2>New Messages</h2>
+        <div id="intro" style="font-size:20px;">
+          New Messages is page, that shows up when user has new messages in the postbox.
+        </div>
+        <div class="row">
+            <div class="col" style="margin-top: -10px;">
+                 <img src="../../assets/pics/image18.bmp">
+                 <div class="detail">--- 1.USERNAME </div>
+                 <div class="detail">--- 2.DATE and TIME of posting</div>
+                 <div class="detail">--- 3.ACTION buttons</div>
+                 <div class="detail">--- 4.DELETE button</div>
+                 <div class="detail">--- 5.DELETE ALL messages button</div>
+            </div>
+            <div class="col" style="margin-left: 10px;">
+                <img style="margin-top: -10px;" src="../../assets/pics/image19.bmp">
+                <div class="detail">--- 1. Link to PROFILE + opens chat with user</div>
+                <div class="detail">--- 2. Accept Friend Request from user</div>
+               
+                <img id="imageOverlap" src="../../assets/pics/image20.bmp">
+               
+            </div>
+        </div>
+    </div>
+
+    <div id="container-content" *ngIf="this.linkWord=='blueprint'">
+        <div class="backBtn" (click)="this.linkWord=''">-----TO GO BACK</div>
+       
+        <img style="height: 370px;width: auto;" src="../../assets/pics/blueprint.bmp">
+       
+    </div>
+
+    <div id="container-content" *ngIf="this.linkWord=='profile'">
+        <div class="backBtn" (click)="this.linkWord=''">-----TO GO BACK</div>
+        <h2>Profile</h2>
+        <div id="intro" style="font-size:20px;">
+          Profile is a personal page, where user can chat with friends from 'Friend list'.
+        </div>
+        <div class="row">
+            <div class="col">
+                <img src="../../assets/pics/image21.bmp">
+                <div class="detail">--- 1.PROFILE PIC of user</div>
+                <div class="detail">--- 2.NEW IMAGE button</div>
+                <div class="detail">--- 3.FRIEND list</div>
+                <div class="detail">--- 4.SENDER messages</div>
+                <div class="detail">--- 5.RECEIVER messages</div>
+                <div class="detail">--- 6.SEND new message template</div>
+            </div>
+           
+            <div class="col" style="margin-left: 10px;">
+                
+                <img  src="../../assets/pics/image22.bmp">
+                <div class="row">
+                <img  style="margin-left:-153px;margin-top: 1px;" src="../../assets/pics/image23.bmp">
+                    <div>
+                        <div class="detail">--- 1.ACTIVE user</div>
+                        <div class="detail">--- 2.NON-ACTIVE user</div>
+                        <div class="detail">--- 3.DELETE user</div>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
     </div>
  </div>

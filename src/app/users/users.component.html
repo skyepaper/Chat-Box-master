@@ -5,11 +5,11 @@
     <img  id="loader" *ngIf="this.loaderFlag==0" src="../../assets/loading.gif">
     <div id="messageList"*ngIf="this.loaderFlag==1">
           
-      <div *ngFor="let user of this.users">
+      <div *ngFor="let user of this.usersToShow">
         <div class="message friend" *ngIf="this.checkFriend(user.username)">
           <div style="margin-left:10px;">
             {{user.username}}
-            <div *ngIf="this.curUser!=null" class="button sendMessageBtn"> SEND MESSAGE</div>
+            <div *ngIf="this.curUser!=null" class="button sendMessageBtn" (click)="navigateProfile(user.username)"> SEND MESSAGE</div>
             <div class="detail">Posts: {{this.getPostCount(user.username)}}</div>
             <div class="detail">Friends: {{user.friends.length || 0}}</div>
            </div>

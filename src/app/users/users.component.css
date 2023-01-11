@@ -77,12 +77,14 @@
 }
 .sendMessageBtn:hover {
     background-color: #11dbdbc5;
+    cursor: pointer;
   }
   .friendRequestBtn{
     background-color: rgb(194, 81, 29);
 }
 .friendRequestBtn:hover {
     background-color: rgb(236, 153, 115);
+    cursor: pointer;
   }
 
 

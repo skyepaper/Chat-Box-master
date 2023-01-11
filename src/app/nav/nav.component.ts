@@ -57,7 +57,7 @@ loadData(){
     localStorage.setItem('passPostbox',cypher3.toString());
 
    // console.log(`--load data--`);
-  },5000);
+  },2000);
 }
 loadUsers(){
   this.http.get<IUser[]>('https://63af5f75649c73f572baa737.mockapi.io/users')

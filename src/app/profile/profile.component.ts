@@ -6,6 +6,9 @@ import { AlertMessageComponent } from '../alert-message/alert-message.component'
 import { IMessage } from '../interface/message';
 import { IUser } from '../interface/user';
 
+import * as crypto from 'crypto-js';
+import { IPostbox } from '../interface/postbox';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -19,9 +22,8 @@ export class ProfileComponent implements OnInit {
   newUrl:string='';
 
   loaderFlag:number=0;
-  date!: Date;
-  dateString:string="";
-  locale:string='en-US';
+  
+  date:string="";
   
   userSec:string='';
   public messages:IMessage[]=[];
@@ -32,29 +34,14 @@ export class ProfileComponent implements OnInit {
   message:string|null="";
   messageLength:number=0;
   numMessagesToShow:number=0;
-  stopLoadingFlag:number=0;
+  //stopLoadingFlag:number=0;
 
   constructor(private http:HttpClient,private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.date=new Date();
-    this.dateString=formatDate(this.date,'d MMM - h:mm a',this.locale);
-    
-    this.getUser();
-    this.numMessagesToShow=6;
-
-    this.getMessages();
-    let interval=setInterval(()=>{
-
-      this.getMessages();
-      this.getUser();
-      if(this.userSec)this.loadChat(this.userSec,this.numMessagesToShow);
-      if(this.stopLoadingFlag==1 || !this.user){
-        this.stopLoadingFlag=0;
-        clearInterval(interval);
-      }
-      
-    },10000);
+  
+   this.getUser();
+   this.reloadPage();
 
   }
  
@@ -87,9 +74,11 @@ export class ProfileComponent implements OnInit {
    }
    loadChat(username:string,numMessage:number){
     this.numMessagesToShow=numMessage;
-
+    if(this.userSec!==username)this.userSec=username;
+    
+   //if(this.userSec)localStorage.removeItem('navigate');
     let interval=setInterval(()=>{
-    this.userSec=username;
+    
     this.messagesToPublish=this.messages.filter
     (m=>(m.sender==this.user?.username && m.receiver==username) || (m.sender==username && m.receiver==this.user?.username));
     
@@ -98,10 +87,11 @@ export class ProfileComponent implements OnInit {
   else numShowStrong=this.numMessagesToShow;
  
   this.messagesToPublishShow=this.messagesToPublish.slice(-numShowStrong);
-  console.log(this.messagesToPublish);
-  
+ 
+  //localStorage.removeItem('navigate');
+
   if(this.userSec!==username){
-    this.stopLoadingFlag=1;
+   // this.stopLoadingFlag=1;
     clearInterval(interval);
   }
   
@@ -115,23 +105,10 @@ export class ProfileComponent implements OnInit {
     clearInterval(interval);
   }
 
- 
-},1000);
+},2000);
 
    }
-   getMessages(){
-    let interval=setInterval(()=>{
-      
-    this.http.get<IMessage[]>('https://63af5f75649c73f572baa737.mockapi.io/messages')
-    .subscribe({
-      next:(value)=>{
-        this.messages=value;
-      }});
-
-      if(this.messages.length>0)clearInterval(interval);
-    },1000);
-
-  }
+  
   showMore(){
     if(this.numMessagesToShow<this.messagesToPublish.length){
       this.numMessagesToShow+=6;
@@ -139,14 +116,24 @@ export class ProfileComponent implements OnInit {
     }
   }
   postMessage(){
+    this.date=formatDate(new Date(),'d MMM - h:mm a','en-US');
+
     let messageToPost=<IMessage>{
       sender: this.user?.username,
       receiver: this.userSec,
       message:this.message,
-      date:this.dateString
+      date:this.date
+    }
+    let newMessage=<IPostbox>{
+      sender: this.user?.username,
+      receiver: this.userSec,
+      message:'',
+      friendRequest:'false',
+      date:this.date
     }
   if(this.message && this.userSec){
     this.http.post<IMessage>('https://63af5f75649c73f572baa737.mockapi.io/messages',messageToPost).subscribe();
+    this.http.post<IPostbox>('https://63af5f75649c73f572baa737.mockapi.io/postbox',newMessage).subscribe();
   }
 
   this.message="";
@@ -161,15 +148,6 @@ export class ProfileComponent implements OnInit {
       else clearInterval(interval);
     },600);
     }
-  getUsername(){
-    if(localStorage.getItem('user')){
-      this.user=JSON.parse(localStorage.getItem('user')!);
-      this.user=JSON.parse(localStorage.getItem('user')!);
-  
-      return this.user?.username;
-    }
-    return "anon";
-    }
   removeUser(username:string){
     const dialogConfig = new MatDialogConfig();
 
@@ -181,4 +159,29 @@ export class ProfileComponent implements OnInit {
 
     this.dialog.open(AlertMessageComponent,dialogConfig);
   }
+  reloadPage(){
+    let flag=0;
+    let interval=setInterval(()=>{
+      this.getUser();
+
+      if(localStorage.getItem('navigate') && flag==0){
+        this.userSec=localStorage.getItem('navigate')!;
+        flag=1;
+      }
+      
+      var cypher=localStorage.getItem('passMessages');
+      var cypherDe=crypto.AES.decrypt(cypher!,'key');
+      this.messages=JSON.parse(cypherDe.toString(crypto.enc.Utf8));
+
+     // if(this.userSec)
+      this.loadChat(this.userSec,this.numMessagesToShow);
+   
+    /*  if(this.stopLoadingFlag==1 || !this.user){
+        this.stopLoadingFlag=0;
+        clearInterval(interval);
+      }*/
+      
+    },2000);
+  }
+ 
 }

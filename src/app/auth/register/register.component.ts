@@ -6,6 +6,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
 import { LoginComponent } from '../login/login.component';
 import { IUser } from 'src/app/interface/user';
 
+import * as crypto from 'crypto-js';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -43,11 +45,10 @@ openLogin() {
 }
 
 async getUsers(){
-  this.http.get<IUser[]>('https://63af5f75649c73f572baa737.mockapi.io/users').subscribe({
-    next:(value)=>{
-      this.users=value;
-    }});
-}
+  var cypher=localStorage.getItem('passUsers');
+  var cypherDe=crypto.AES.decrypt(cypher!,'key');
+  this.users=JSON.parse(cypherDe.toString(crypto.enc.Utf8));
+  }
 checkError(user:IUser){
   if(!(user.username && user.password)){
     this.errorMessage='All fields required';

@@ -16,4 +16,11 @@
     <button class="sendBtn" style="width:100%;" mat-dialog-close>OK</button>
   </div>
 
+  <div *ngIf="this.messageSendFlag==2">
+    <div id="friendRequestSent">
+        Message not send (empty)!
+    </div>
+    <button class="sendBtn" style="width:100%;" mat-dialog-close>OK</button>
+  </div>
+
 </div>

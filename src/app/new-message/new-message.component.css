@@ -74,12 +74,14 @@
 }
 .sendMessageBtn:hover {
     background-color: rgb(161, 57, 121);
+    cursor: pointer;
   }
   .friendRequestBtn{
     background-color: rgb(14, 114, 59);
 }
 .friendRequestBtn:hover {
     background-color: rgb(27, 180, 96);
+    cursor: pointer;
   }
   .delMessageBtn{
     width: 20px;
@@ -88,6 +90,7 @@
 }
 .delMessageBtn:hover{
     background-color: rgb(172, 49, 65);
+    cursor: pointer;
 }
 .clearAllBtn{
     width: 100px;
@@ -95,6 +98,10 @@
     margin-top:35px;
     margin-right: 20px;
     background-color: rgb(131, 25, 39);
+}
+.clearAllBtn:hover{
+    background-color: rgb(172, 49, 65);
+    cursor: pointer;
 }
 #loader{
     height: 100px;

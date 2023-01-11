@@ -73,6 +73,10 @@ export class UsersComponent implements OnInit {
     if(this.usersToShow.length>0)this.loaderFlag=1;
 
     //  console.log('post-user-list');
-    },5000);
+    },2000);
+  }
+  navigateProfile(username:string){
+    localStorage.setItem('navigate',username);
+    this.router.navigate(['/profile']);
   }
 }
